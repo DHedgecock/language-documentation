@@ -7,7 +7,10 @@
   ],
   "activationCommands": {
   },
-  "repository": "https://github.com/atom/language-documentation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DHedgecock/language-documentation.git"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
