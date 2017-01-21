@@ -1,12 +1,10 @@
 {
   "name": "language-documentation",
   "main": "./lib/language-documentation",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Atom grammar package for writing JS documentation",
-  "keywords": [
-  ],
-  "activationCommands": {
-  },
+  "keywords": [],
+  "activationCommands": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DHedgecock/language-documentation.git"
@@ -15,6 +13,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
