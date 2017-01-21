@@ -1,0 +1,135 @@
+{
+  "comment": "This set of patterns matches jsdoc/yuidoc/docblock style comment blocks with the form /** */. Because these comments are typically parsed as markdown by their respective tools, there are patterns here to match on markdown elements (currently code blocks and headers). Ordering of the code blocks' include is important because they match on very similar things.",
+  "scopeName": "source.docblock",
+  "injectionSelector": "comment.block.documentation",
+  "patterns": [
+    { "include": "#docblock-return-tag" },
+    { "include": "#docblock-tag" },
+    { "include": "#markdown-header" },
+    { "include": "#markdown-list" },
+    { "include": "#markdown-bold" },
+    { "include": "#markdown-italic" },
+    { "include": "#markdown-code-block" },
+    { "include": "#markdown-inline-code-block" }
+  ],
+  "repository": {
+    "docblock-return-tag": {
+      "comment": "Matches the return tag, which can have a type, but not a name for that type, if there are more tags that can have types without names, add them here",
+      "name": "entity.tag.doc",
+      "match": "^\\s*(\\*)?\\s(@return)\\s({.*})?(.*)$",
+      "captures": {
+        "1": { "name": "comment.block.documentation.punctuation.js" },
+        "2": { "name": "storage.type.class.doc" },
+        "3": { "name": "entity.name.type.instance.doc" },
+        "4": { "name": "description.doc" }
+      },
+      "patterns": [
+        { "include": "#doc-block-invalid-type" }
+      ]
+    },
+    "docblock-tag": {
+      "comment": "Matches all other docblock tags",
+      "name": "entity.tag.doc",
+      "match": "^\\s*(\\*)?\\s(@\\w*)(\\s({.*})\\s(\\S*))?(.*)$",
+      "captures": {
+        "1": { "name": "comment.block.documentation.punctuation.js" },
+        "2": { "name": "storage.type.class.doc" },
+        "3": { "name": "entity.type.doc" },
+        "4": { "name": "entity.name.type.instance.doc" },
+        "5": { "name": "variable.name.doc" },
+        "6": { "name": "description.doc" }
+      },
+      "patterns": [
+        { "include": "#doc-block-invalid-type" }
+      ]
+    },
+    "markdown-header": {
+      "comment": "Captures markdown headers, must capture line start to prevent mid-line header captures. Because must capture line start, must be included before docblock-guard-rail match",
+      "name": "entity.heading.gfm.js",
+      "match": "^\\s*(\\*)?\\s?(#{1,6})\\s(.*)$",
+      "captures": {
+        "1": { "name": "comment.block.documentation.punctuation.js" },
+        "2": { "name": "markup.heading.marker.gfm.js" },
+        "3": { "name": "markup.heading.gfm.js" }
+      }
+    },
+    "markdown-list": {
+      "comment": "Captures markdown lists, must capture line start to prevent mid-line list captures. Because must capture line start, must be included before docblock-guard-rail match. Ending whitespace match in begin prevents tables like ' * ---' from matching. NOTE: there is a known limitation that the docblock must use * for a rail guard",
+      "name": "entity.list.gfm.js",
+      "match": "^\\s*(\\*)\\s{0,3}(\\*|\\+|\\-|\\d\\.)\\s.*$",
+      "captures": {
+        "1": { "name": "comment.block.documentation.punctuation.js" },
+        "2": { "name": "markup.variable.list.marker.gfm.js" }
+      }
+    },
+    "markdown-bold": {
+      "comment": "matches markdown **bold** elements, NOTE: must go before italic matches",
+      "name": "markup.bold.gfm",
+      "match": "(__|\\*\\*)(?!\/).+?(\\1)",
+      "captures": {
+        "1": { "name": "punctuation.definition.begin.bold.gfm" },
+        "2": { "name": "punctuation.definition.end.bold.gfm" }
+      }
+    },
+    "markdown-italic": {
+      "comment": "matches markdown emphasis elements of _ or *",
+      "name": "markup.italic.gfm",
+      "match": "(_)(?!\/).+?(\\1)",
+      "captures": {
+        "1": { "name": "punctuation.definition.begin.italic.gfm" },
+        "2": { "name": "punctuation.definition.end.italic.gfm" }
+      }
+    },
+    "markdown-code-block": {
+      "comment": "captures markdown code blocks",
+      "name": "markup.raw.code.block.gfm",
+      "begin": "(`{3})(\\w*)?",
+      "end": "(\\1)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.begin.code.block.gfm" },
+        "2": { "name": "entity.name.tag.gfm" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.end.code.block.gfm" }
+      },
+      "patterns": [
+        { "include": "#docblock-guard-rail" }
+      ]
+    },
+    "markdown-inline-code-block": {
+      "comment": "captures markdown code blocks with single backticks",
+      "name": "markup.raw.inline.code.block.gfm",
+      "begin": "(`{1})(?:\\w)",
+      "end": "(\\1)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.begin.inline.code.block.gfm" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.end.inline.code.block.gfm" }
+      },
+      "patterns": [
+        { "include": "#docblock-guard-rail" }
+      ]
+    },
+    "docblock-guard-rail": {
+      "comment": "Captures the (optional) star at each docblock line start, useful for having the docblock text be a different color than the border stars",
+      "name": "comment.block.documentation.punctuation.js",
+      "match": "^(\\s*(\\*)\\s{1})"
+    },
+    "doc-block-invalid-type": {
+      "comment": "mark default type text as invalid as a helpful reminder to update NOTE: this isn't getting matched now",
+      "name": "invalid.illegal.bad-type.doc",
+      "match": "{\\[type\\]}"
+    },
+    "doc-blocks": {
+      "comment": "NOT IN USE Captures docblock comments",
+      "name": "comment.docblock.block.documentation.gfm.js",
+      "begin": "\\s*((/\\*\\*))(?!/)",
+      "end": "(\\s*(\\*/))",
+      "captures": {
+        "1": { "name": "comment.block.documentation.js" },
+        "2": { "name": "punctuation.definition.comment.js" }
+      }
+    }
+  }
+}
