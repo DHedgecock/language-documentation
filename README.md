@@ -1,5 +1,18 @@
 # language-documentation package
 
-A short description of your package.
+Atom grammar for JS documentation comment code blocks using JSDoc syntaxes.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+---
+
+Package adds syntax highlighting for Markdown:
+- Headers
+- Lists
+- Bold
+- Italics
+- Code Blocks
+- Inline Code Blocks
+
+Additional highlighting for JSDoc tags with types are also included.
+
+
+![Screenshot](https://raw.githubusercontent.com/DHedgecock/language-documentation/master/screenshot.png)
