@@ -22,10 +22,7 @@
         "2": { "name": "storage.type.class.doc" },
         "3": { "name": "entity.name.type.instance.doc" },
         "4": { "name": "description.doc" }
-      },
-      "patterns": [
-        { "include": "#doc-block-invalid-type" }
-      ]
+      }
     },
     "docblock-tag": {
       "comment": "Matches all other docblock tags",
@@ -38,10 +35,7 @@
         "4": { "name": "entity.name.type.instance.doc" },
         "5": { "name": "variable.name.doc" },
         "6": { "name": "description.doc" }
-      },
-      "patterns": [
-        { "include": "#doc-block-invalid-type" }
-      ]
+      }
     },
     "markdown-header": {
       "comment": "Captures markdown headers, must capture line start to prevent mid-line header captures. Because must capture line start, must be included before docblock-guard-rail match",
@@ -56,11 +50,17 @@
     "markdown-list": {
       "comment": "Captures markdown lists, must capture line start to prevent mid-line list captures. Because must capture line start, must be included before docblock-guard-rail match. Ending whitespace match in begin prevents tables like ' * ---' from matching. NOTE: there is a known limitation that the docblock must use * for a rail guard",
       "name": "entity.list.gfm.js",
-      "match": "^\\s*(\\*)\\s{0,3}(\\*|\\+|\\-|\\d\\.)\\s.*$",
+      "begin": "^\\s*(\\*)\\s{0,3}(\\*|\\+|\\-|\\d\\.)\\s",
+      "end": "$",
       "captures": {
         "1": { "name": "comment.block.documentation.punctuation.js" },
         "2": { "name": "markup.variable.list.marker.gfm.js" }
-      }
+      },
+      "patterns": [
+        { "include": "#markdown-bold" },
+        { "include": "#markdown-italic" },
+        { "include": "#markdown-inline-code-block" }
+      ]
     },
     "markdown-bold": {
       "comment": "matches markdown **bold** elements, NOTE: must go before italic matches",
