@@ -99,7 +99,7 @@
     "markdown-inline-code-block": {
       "comment": "captures markdown code blocks with single backticks",
       "name": "markup.raw.inline.code.block.gfm",
-      "begin": "(`{1})(?:\\w)",
+      "begin": "(`{1})(?:[/.\\w])",
       "end": "(\\1)",
       "beginCaptures": {
         "1": { "name": "punctuation.begin.inline.code.block.gfm" }
