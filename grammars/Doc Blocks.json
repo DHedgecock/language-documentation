@@ -16,7 +16,7 @@
     "docblock-return-tag": {
       "comment": "Matches the return tag, which can have a type, but not a name for that type, if there are more tags that can have types without names, add them here",
       "name": "entity.tag.doc",
-      "match": "^\\s*(\\*)?\\s(@return)\\s({.*})?(.*)$",
+      "match": "^\\s*(\\*)?\\s(@return|@returns)\\s({.*})?(.*)$",
       "captures": {
         "1": { "name": "comment.block.documentation.punctuation.js" },
         "2": { "name": "storage.type.class.doc" },
@@ -27,7 +27,7 @@
     "docblock-tag": {
       "comment": "Matches all other docblock tags",
       "name": "entity.tag.doc",
-      "match": "^\\s*(\\*)?\\s(@\\w*)(\\s({.*})\\s(\\S*))?(.*)$",
+      "match": "^\\s*(\\*)?\\s(@\\w*)(\\s+({.*})\\s+(\\S*))?(.*)$",
       "captures": {
         "1": { "name": "comment.block.documentation.punctuation.js" },
         "2": { "name": "storage.type.class.doc" },
@@ -74,7 +74,7 @@
     "markdown-italic": {
       "comment": "matches markdown emphasis elements of _ or *",
       "name": "markup.italic.gfm",
-      "match": "(_)(?!\/).+?(\\1)",
+      "match": "(_).+?(\\1)",
       "captures": {
         "1": { "name": "punctuation.definition.begin.italic.gfm" },
         "2": { "name": "punctuation.definition.end.italic.gfm" }
@@ -99,17 +99,11 @@
     "markdown-inline-code-block": {
       "comment": "captures markdown code blocks with single backticks",
       "name": "markup.raw.inline.code.block.gfm",
-      "begin": "(`{1})(?:[/.\\w])",
-      "end": "(\\1)",
-      "beginCaptures": {
-        "1": { "name": "punctuation.begin.inline.code.block.gfm" }
-      },
-      "endCaptures": {
-        "1": { "name": "punctuation.end.inline.code.block.gfm" }
-      },
-      "patterns": [
-        { "include": "#docblock-guard-rail" }
-      ]
+      "match": "(`).+?(\\1)",
+      "captures": {
+        "1": { "name": "punctuation.begin.inline.code.block.gfm" },
+        "2": { "name": "punctuation.end.inline.code.block.gfm" }
+      }
     },
     "docblock-guard-rail": {
       "comment": "Captures the (optional) star at each docblock line start, useful for having the docblock text be a different color than the border stars",
