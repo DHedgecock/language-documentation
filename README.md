@@ -14,14 +14,11 @@ Included commands to fold/unfold all Docblocks:
 ## Markdown Syntax Highlighting
 
 Package adds syntax highlighting for Markdown:
-- Headers
-- Lists
 - Bold
 - Italics
-- Code Blocks
 - Inline Code Blocks
-
-Additional highlighting for JSDoc tags with types are also included.
-
+- Headers
+- Lists
+- Fenced Code Blocks
 
 ![Screenshot](https://raw.githubusercontent.com/DHedgecock/language-documentation/master/screenshot.png)
