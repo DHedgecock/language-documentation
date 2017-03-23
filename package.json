@@ -1,7 +1,7 @@
 {
   "name": "language-documentation",
   "main": "./lib/language-documentation",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Atom grammar package for writing JS documentation",
   "keywords": [],
   "activationCommands": {},
