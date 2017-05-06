@@ -15,6 +15,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "atom-grammar-test": "^0.6.3"
+    "atom-grammar-test": "^0.6.3",
+    "@crystal-ball/eslint-config-eloquence": "^1.0.0"
   }
 }

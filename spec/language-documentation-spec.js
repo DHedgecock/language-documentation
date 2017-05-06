@@ -17,5 +17,5 @@ describe('LanguageDocumentation', () => {
     });
   });
 
-  grammarTest(path.join(__dirname, 'fixtures/syntax_test.js'))
+  grammarTest(path.join(__dirname, 'fixtures/syntax_test.js'));
 });
